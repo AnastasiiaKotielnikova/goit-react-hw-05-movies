@@ -19,8 +19,7 @@ export const Header = styled.header`
   padding-top: 12px;
   padding-bottom: 12px;
   color: #fff;
-  background-image: url('./header.jpg');
-  background-color: black;
+  background-color: yellow;
   background-size: cover;
   background-repeat: no-repeat;
 `;
@@ -36,7 +35,7 @@ export const StyledNavLink = styled(NavLink)`
   outline: none;
   text-decoration: none;
   &.active {
-    color: orangered;
+    color: blue;
     font-size: 40px;
   }
 `;

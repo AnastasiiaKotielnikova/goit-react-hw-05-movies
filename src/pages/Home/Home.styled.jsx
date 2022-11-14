@@ -7,7 +7,7 @@ export const Title = styled.h1`
   font-size: 40px;
   text-align: right;
   &:hover {
-    color: oranged;
+    color: blue;
   }
 `;
 

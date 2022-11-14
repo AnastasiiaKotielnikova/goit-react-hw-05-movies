@@ -22,3 +22,13 @@ export async function getMoviesByName(searchQuery) {
     console.log(error);
   }
 }
+
+export async function getMoviesDetails(id) {
+  try {
+    const url = `${BASE_URL}/movie/${id}?api_key=${KEY}&language=en-US`;
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
