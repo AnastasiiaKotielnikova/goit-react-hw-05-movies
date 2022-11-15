@@ -37,13 +37,13 @@ const MovieDetails = ({ info }) => {
         <Title>
           {original_title} ({releaseDate ? releaseDate : 'N/A'})
         </Title>
-        <p>{movieGanres.join(' , ')}</p>
+        <p>Genres: {movieGanres.join(' , ')}</p>
         <Raiting>
           <p>User score:</p>
           {''}
           {voteAverage ? voteAverage + '%' : 'No information'}
         </Raiting>
-        <Description>{overview}</Description>
+        <Description>Overview: {overview}</Description>
         <OtherInfo>
           <li>
             <StyledNavLink to="cast" state={location.state}>
@@ -74,7 +74,7 @@ MovieDetails.propTypes = {
     ).isRequired,
     overview: PropTypes.string.isRequired,
     poster_path: PropTypes.string,
-    release_date: PropTypes.number.isRequired,
+    release_date: PropTypes.string.isRequired,
     vote_average: PropTypes.number.isRequired,
   }).isRequired,
 };

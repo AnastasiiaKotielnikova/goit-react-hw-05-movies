@@ -38,6 +38,6 @@ export const Info = styled.div`
 export const Role = styled.p`
   font-family: 'Metal Mania', cursive;
   &:hover {
-    color: orangered;
+    color: yellow;
   }
 `;

@@ -5,8 +5,8 @@ export const Container = styled.div`
   button {
     width: 100px;
     padding: 5px;
-    background-color: black;
-    color: orangered;
+    background-color: blue;
+    color: #ffffff;
     font-weight: 500;
     font-size: 16px;
     font-family: 'Exo', sans-serif;
@@ -14,12 +14,12 @@ export const Container = styled.div`
     border: none;
     outline: none;
     &.active {
-      background-color: orangered;
+      background-color: yellow;
     }
     &:hover,
     &:focus {
       color: #ffffff;
-      background-color: orangered;
+      background-color: yellow;
     }
   }
 `;

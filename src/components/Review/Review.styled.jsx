@@ -15,15 +15,6 @@ export const ReviewItem = styled.li`
   margin-bottom: 30px;
 `;
 
-export const Avatar = styled.div`
-  border-radius: 50%;
-  margin-right: 20px;
-  img {
-    border-radius: 50%;
-    height: 80px;
-  }
-`;
-
 export const ReviewText = styled.div``;
 
 export const Author = styled.p`

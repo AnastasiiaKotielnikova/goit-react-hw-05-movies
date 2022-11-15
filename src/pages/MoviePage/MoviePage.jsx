@@ -19,7 +19,7 @@ const MoviePage = () => {
     setStatus('pending');
     getMoviesDetails(id)
       .then(response => {
-        setMovie(response.data);
+        setMovie(response);
         setStatus('resolved');
       })
       .catch(error => {

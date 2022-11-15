@@ -71,7 +71,7 @@ export const StyledNavLink = styled(NavLink)`
   width: 40px;
   margin-right: 20px;
   padding: 5px;
-  color: orangered;
+  color: blue;
   font-weight: 500;
   font-size: 20px;
   border-radius: 4px;
@@ -79,11 +79,11 @@ export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   &.active {
     color: #ffffff;
-    background-color: orangered;
+    background-color: blue;
   }
   &:hover,
   &:focus {
     color: #ffffff;
-    background-color: orangered;
+    background-color: blue;
   }
 `;

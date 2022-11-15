@@ -21,8 +21,8 @@ const Cast = ({ items }) => {
               />
             </div>
             <Info>
-              <Role>{character}</Role>
-              <p>{name}</p>
+              <p>Name: {name}</p>
+              <Role>Character: {character}</Role>
             </Info>
           </CastItem>
         );

@@ -2,7 +2,7 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 export function startLoader() {
   Loading.pulse({
-    svgColor: '#ff6b08',
+    svgColor: 'yellow',
     backgroundColor: 'transparent',
     svgSize: '100px',
   });
