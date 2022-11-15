@@ -6,6 +6,7 @@ import MovieDetails from 'components/MovieDetails';
 import ReviewPage from 'pages/ReviewPage';
 import CastPage from 'pages/CastPage';
 import { Container, Error } from './MoviePage.styled';
+import { startLoader, stopLoader } from 'components/Loader';
 
 const MoviePage = () => {
   const [movie, setMovie] = useState(null);
@@ -24,6 +25,9 @@ const MoviePage = () => {
       .catch(error => {
         setStatus('rejected');
         console.log(error);
+      })
+      .finally(() => {
+        stopLoader();
       });
   }, [id]);
 
@@ -33,6 +37,7 @@ const MoviePage = () => {
 
   return (
     <Container>
+      {status === 'pending' && startLoader()}
       {status === 'resolved' && (
         <>
           <button type="button" onClick={onGoBackClick}>

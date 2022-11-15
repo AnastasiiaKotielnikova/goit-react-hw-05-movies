@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { CastList, CastItem, Image, Info, Role } from './Cast.styled';
 
 const Cast = ({ items }) => {
-  const baseUrl = 'https://image.tmdb.org/t/p/w300';
+  const baseUrl = 'https://image.tmdb.org/t/p/w500';
   return (
     <CastList>
       {items.map(({ id, character, name, profile_path }) => {
@@ -10,7 +10,11 @@ const Cast = ({ items }) => {
           <CastItem key={id}>
             <div>
               <Image
-                src={profile_path ? baseUrl + profile_path : './images/no-photo_info'}
+                src={
+                  profile_path
+                    ? baseUrl + profile_path
+                    : './images/no-photo_info'
+                }
                 alt="actor"
                 width="200"
                 height="200"

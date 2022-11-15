@@ -3,6 +3,7 @@ import { getMovieReview } from 'services/api';
 import Review from 'components/Review';
 import { Error, Container } from './ReviewPage.styled';
 import { useEffect, useState } from 'react';
+import { startLoader, stopLoader } from 'components/Loader';
 
 const ReviewPage = ({ movieId }) => {
   const [reviews, setReviews] = useState([]);
@@ -18,11 +19,15 @@ const ReviewPage = ({ movieId }) => {
       .catch(error => {
         setStatus('rejected');
         console.log(error);
+      })
+      .finally(() => {
+        stopLoader();
       });
   }, [movieId]);
 
   return (
     <Container>
+      {status === 'pending' && startLoader()}
       {status === 'resolved' && reviews.length > 0 && (
         <Review items={reviews} />
       )}

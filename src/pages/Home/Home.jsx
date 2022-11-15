@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import MovieList from 'components/MovieList';
 import { Title, Error } from './Home.styled';
 import { getTrendingMovies } from 'services/api';
+import { startLoader, stopLoader } from 'components/Loader';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -17,6 +18,9 @@ const Home = () => {
       .catch(error => {
         setStatus('rejected');
         console.log(error);
+      })
+      .finally(() => {
+        stopLoader();
       });
   }, []);
 
@@ -24,6 +28,7 @@ const Home = () => {
     <main>
       <div>
         <Title>Trending today</Title>
+        {status === 'pending' && startLoader()}
         {status === 'resolved' && <MovieList movies={movies} />}
         {status === 'rejected' && (
           <Error>Ups... Something went wrong. Please try again later.</Error>

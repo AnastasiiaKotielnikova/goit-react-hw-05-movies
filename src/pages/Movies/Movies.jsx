@@ -11,6 +11,7 @@ import {
 } from './Movies.styled';
 import { BsSearch } from 'react-icons/bs';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import { startLoader, stopLoader } from 'components/Loader';
 import { getMoviesByName } from 'services/api';
 
 const Movies = () => {
@@ -41,6 +42,9 @@ const Movies = () => {
       .catch(error => {
         setStatus('rejected');
         console.log(error);
+      })
+      .finally(() => {
+        stopLoader();
       });
   }, [searchParams, query]);
 
@@ -78,6 +82,7 @@ const Movies = () => {
         </SearchForm>
       </Container>
 
+      {status === 'pending' && startLoader()}
       {status === 'resolved' && <MovieList movies={movies} />}
       {status === 'rejected' && (
         <Error>Ups... Something went wrong. Please try again later.</Error>

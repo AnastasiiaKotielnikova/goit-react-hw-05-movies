@@ -3,6 +3,7 @@ import { getMovieCredits } from 'services/api';
 import Cast from 'components/Cast';
 import { Error } from './CastPage.styled';
 import { useEffect, useState } from 'react';
+import { startLoader, stopLoader } from 'components/Loader';
 
 const CastPage = ({ movieId }) => {
   const [actors, setActors] = useState([]);
@@ -18,11 +19,15 @@ const CastPage = ({ movieId }) => {
       .catch(error => {
         setStatus('rejected');
         console.log(error);
+      })
+      .finally(() => {
+        stopLoader();
       });
   }, [movieId]);
 
   return (
     <div>
+      {status === 'pending' && startLoader()}
       {status === 'resolved' && actors.length > 0 && <Cast items={actors} />}
       {actors.length === 0 && (
         <Error>We don't have any information about cast of this movie</Error>

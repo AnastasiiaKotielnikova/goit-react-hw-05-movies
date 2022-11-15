@@ -10,7 +10,7 @@ import {
 } from './Review.styled';
 
 const Review = ({ items }) => {
-  const baseUrl = 'https://image.tmdb.org/t/p/w300';
+  const baseUrl = 'https://image.tmdb.org/t/p/w500';
   return (
     <Container>
       <p>MOVIE REVIEWS</p>

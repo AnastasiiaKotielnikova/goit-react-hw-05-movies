@@ -19,10 +19,12 @@ const MovieDetails = ({ info }) => {
     genres,
     overview,
     poster_path,
-    popularity,
+    release_date,
     vote_average,
   } = info;
-  const imageBaseUrl = `https://image.tmdb.org/t/p/w300`;
+  const imageBaseUrl = `https://image.tmdb.org/t/p/w500`;
+  const releaseDate = release_date.slice(0, 4);
+  const voteAverage = Math.floor(vote_average * 10);
   const movieGanres = genres.map(genre => genre.name);
   const location = useLocation();
 
@@ -31,16 +33,17 @@ const MovieDetails = ({ info }) => {
       <ImageWrap>
         <Image src={imageBaseUrl + poster_path} alt={original_title} />
       </ImageWrap>
-
       <InfoWrap>
-        <Title>{original_title}</Title>
+        <Title>
+          {original_title} ({releaseDate ? releaseDate : 'N/A'})
+        </Title>
         <p>{movieGanres.join(' , ')}</p>
         <Raiting>
-          <p>👁 {Math.round(popularity)}</p>
-          <p>⭐️{vote_average}</p>
+          <p>User score:</p>
+          {''}
+          {voteAverage ? voteAverage + '%' : 'No information'}
         </Raiting>
         <Description>{overview}</Description>
-
         <OtherInfo>
           <li>
             <StyledNavLink to="cast" state={location.state}>
@@ -71,7 +74,7 @@ MovieDetails.propTypes = {
     ).isRequired,
     overview: PropTypes.string.isRequired,
     poster_path: PropTypes.string,
-    popularity: PropTypes.number.isRequired,
+    release_date: PropTypes.number.isRequired,
     vote_average: PropTypes.number.isRequired,
   }).isRequired,
 };
