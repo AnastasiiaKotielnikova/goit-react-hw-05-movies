@@ -32,3 +32,23 @@ export async function getMoviesDetails(id) {
     console.log(error);
   }
 }
+
+export async function getMovieCredits(id) {
+  try {
+    const url = `${BASE_URL}/movie/${id}/credits?api_key=${KEY}&language=en-US`;
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getMovieReview(id) {
+  try {
+    const url = `${BASE_URL}/movie/${id}/reviews?api_key=${KEY}&language=en-US&page=1`;
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

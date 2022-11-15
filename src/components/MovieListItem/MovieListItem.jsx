@@ -10,7 +10,7 @@ import {
 } from './MovieListItem.styled';
 
 const MovieItem = ({ id, src, title, vote }) => {
-  const imageBaseUrl = `https://image.tmdb.org/t/p/w500`;
+  const imageBaseUrl = `https://image.tmdb.org/t/p/w300`;
   const movieLink = `/movies/${id}`;
   const location = useLocation();
 

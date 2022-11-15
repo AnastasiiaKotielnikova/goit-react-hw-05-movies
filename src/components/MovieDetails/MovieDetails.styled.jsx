@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -57,5 +58,32 @@ export const Raiting = styled.div`
   margin-bottom: 30px;
   p {
     margin-right: 20px;
+  }
+`;
+
+export const OtherInfo = styled.ul`
+  display: flex;
+  list-style: none;
+  padding: 0px;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  width: 40px;
+  margin-right: 20px;
+  padding: 5px;
+  color: orangered;
+  font-weight: 500;
+  font-size: 20px;
+  border-radius: 4px;
+  outline: none;
+  text-decoration: none;
+  &.active {
+    color: #ffffff;
+    background-color: orangered;
+  }
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    background-color: orangered;
   }
 `;

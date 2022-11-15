@@ -77,6 +77,7 @@ const Movies = () => {
           </Button>
         </SearchForm>
       </Container>
+
       {status === 'resolved' && <MovieList movies={movies} />}
       {status === 'rejected' && (
         <Error>Ups... Something went wrong. Please try again later.</Error>

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import {
   Container,
@@ -9,6 +9,8 @@ import {
   Title,
   Raiting,
   Description,
+  OtherInfo,
+  StyledNavLink,
 } from './MovieDetails.styled';
 
 const MovieDetails = ({ info }) => {
@@ -20,8 +22,9 @@ const MovieDetails = ({ info }) => {
     popularity,
     vote_average,
   } = info;
-  const imageBaseUrl = `https://image.tmdb.org/t/p/w500`;
+  const imageBaseUrl = `https://image.tmdb.org/t/p/w300`;
   const movieGanres = genres.map(genre => genre.name);
+  const location = useLocation();
 
   return (
     <Container>
@@ -37,6 +40,19 @@ const MovieDetails = ({ info }) => {
           <p>⭐️{vote_average}</p>
         </Raiting>
         <Description>{overview}</Description>
+
+        <OtherInfo>
+          <li>
+            <StyledNavLink to="cast" state={location.state}>
+              CAST
+            </StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink to="review" state={location.state}>
+              REVIEW
+            </StyledNavLink>
+          </li>
+        </OtherInfo>
       </InfoWrap>
       <Outlet />
     </Container>
