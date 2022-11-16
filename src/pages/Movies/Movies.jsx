@@ -16,37 +16,37 @@ import { getMoviesByName } from 'services/api';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
-  const [movies, setMovies] = useState(null);
+  const [movies, setMovies] = useState([]);
   const [status, setStatus] = useState('idle');
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    if (searchParams.get('searchQuery') === null) {
-      return;
+    if (searchParams.get('searchQuery') !== null) {
+      const userQuery = searchParams.get('searchQuery');
+      setStatus('pending');
+      getMoviesByName(userQuery)
+        .then(response => {
+          if (response.results.length === 0) {
+            Report.failure(
+              'Search Failure',
+              'There is no movie for your query. Please enter other query',
+              'Ok'
+            );
+            return;
+          }
+          setMovies(response.results);
+          setStatus('resolved');
+          setQuery('');
+        })
+        .catch(error => {
+          setStatus('rejected');
+          console.log(error);
+        })
+        .finally(() => {
+          stopLoader();
+        });
     }
-    const userQuery = searchParams.get('searchQuery');
-    setStatus('pending');
-    getMoviesByName(userQuery)
-      .then(response => {
-        if (response.results.length === 0) {
-          Report.failure(
-            'Search Failure',
-            'There is no movie for your query. Please enter other query',
-            'Ok'
-          );
-          return;
-        }
-        setMovies(response.results);
-        setStatus('resolved');
-      })
-      .catch(error => {
-        setStatus('rejected');
-        console.log(error);
-      })
-      .finally(() => {
-        stopLoader();
-      });
-  }, [searchParams, query]);
+  }, [searchParams]);
 
   const handleNameChange = e => {
     setQuery(e.currentTarget.value.toLowerCase());
@@ -60,7 +60,6 @@ const Movies = () => {
     }
 
     setSearchParams({ searchQuery: query });
-    setQuery('');
   };
 
   return (

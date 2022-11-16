@@ -6,6 +6,8 @@ import Layout from 'components/Layout';
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
 const MoviePage = lazy(() => import('pages/MoviePage'));
+const CastPage = lazy(() => import('pages/CastPage'));
+const ReviewPage = lazy(() => import('pages/ReviewPage'));
 const NotFound = lazy(() => import('components/NotFound'));
 
 const App = () => {
@@ -15,10 +17,13 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="movies/:id/*" element={<MoviePage />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="movies" element={<Movies />} />
+            <Route path="movies/:id" element={<MoviePage />}>
+              <Route path="cast" element={<CastPage />} />
+              <Route path="review" element={<ReviewPage />} />
+            </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>

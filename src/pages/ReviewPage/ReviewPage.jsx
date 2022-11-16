@@ -1,17 +1,18 @@
-import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { getMovieReview } from 'services/api';
 import Review from 'components/Review';
 import { Error, Container } from './ReviewPage.styled';
 import { useEffect, useState } from 'react';
 import { startLoader, stopLoader } from 'components/Loader';
 
-const ReviewPage = ({ movieId }) => {
+const ReviewPage = () => {
   const [reviews, setReviews] = useState([]);
   const [status, setStatus] = useState('idle');
+  const { id } = useParams();
 
   useEffect(() => {
     setStatus('pending');
-    getMovieReview(movieId)
+    getMovieReview(id)
       .then(response => {
         setReviews(response.results);
         setStatus('resolved');
@@ -23,7 +24,7 @@ const ReviewPage = ({ movieId }) => {
       .finally(() => {
         stopLoader();
       });
-  }, [movieId]);
+  }, [id]);
 
   return (
     <Container>
@@ -42,7 +43,3 @@ const ReviewPage = ({ movieId }) => {
 };
 
 export default ReviewPage;
-
-ReviewPage.propTypes = {
-  movieId: PropTypes.string,
-};

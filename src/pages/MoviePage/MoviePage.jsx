@@ -1,10 +1,7 @@
-import { Routes, Route } from 'react-router-dom';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMoviesDetails } from 'services/api';
 import MovieDetails from 'components/MovieDetails';
-import ReviewPage from 'pages/ReviewPage';
-import CastPage from 'pages/CastPage';
 import { Container, Error } from './MoviePage.styled';
 import { startLoader, stopLoader } from 'components/Loader';
 
@@ -49,10 +46,6 @@ const MoviePage = () => {
       {status === 'rejected' && (
         <Error>Ups... Something went wrong. Please try again later.</Error>
       )}
-      <Routes>
-        <Route path="review" element={<ReviewPage movieId={id} />} />
-        <Route path="cast" element={<CastPage movieId={id} />} />
-      </Routes>
     </Container>
   );
 };

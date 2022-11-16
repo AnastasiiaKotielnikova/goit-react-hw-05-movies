@@ -5,7 +5,7 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 export async function getTrendingMovies() {
   try {
-    const url = `${BASE_URL}/trending/movie/day?api_key=${KEY}&language=en-US&page=1`;
+    const url = `${BASE_URL}/trending/movie/day?api_key=${KEY}&page=1`;
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
@@ -15,7 +15,7 @@ export async function getTrendingMovies() {
 
 export async function getMoviesByName(searchQuery) {
   try {
-    const url = `${BASE_URL}/search/movie?api_key=${KEY}&query=${searchQuery}&include_adult=false&language=en-US&page=1`;
+    const url = `${BASE_URL}/search/movie?api_key=${KEY}&query=${searchQuery}&page=1`;
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
@@ -25,7 +25,7 @@ export async function getMoviesByName(searchQuery) {
 
 export async function getMoviesDetails(id) {
   try {
-    const url = `${BASE_URL}/movie/${id}?api_key=${KEY}&language=en-US`;
+    const url = `${BASE_URL}/movie/${id}?api_key=${KEY}`;
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
@@ -35,7 +35,7 @@ export async function getMoviesDetails(id) {
 
 export async function getMovieCredits(id) {
   try {
-    const url = `${BASE_URL}/movie/${id}/credits?api_key=${KEY}&language=en-US`;
+    const url = `${BASE_URL}/movie/${id}/credits?api_key=${KEY}`;
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
@@ -45,7 +45,7 @@ export async function getMovieCredits(id) {
 
 export async function getMovieReview(id) {
   try {
-    const url = `${BASE_URL}/movie/${id}/reviews?api_key=${KEY}&language=en-US&page=1`;
+    const url = `${BASE_URL}/movie/${id}/reviews?api_key=${KEY}&page=1`;
     const response = await axios.get(url);
     return response.data;
   } catch (error) {

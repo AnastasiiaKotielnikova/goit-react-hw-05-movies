@@ -1,17 +1,18 @@
-import PropTypes from 'prop-types';
 import { getMovieCredits } from 'services/api';
 import Cast from 'components/Cast';
 import { Error } from './CastPage.styled';
 import { useEffect, useState } from 'react';
 import { startLoader, stopLoader } from 'components/Loader';
+import { useParams } from 'react-router-dom';
 
-const CastPage = ({ movieId }) => {
+const CastPage = () => {
   const [actors, setActors] = useState([]);
   const [status, setStatus] = useState('idle');
+  const { id } = useParams();
 
   useEffect(() => {
     setStatus('pending');
-    getMovieCredits(movieId)
+    getMovieCredits(id)
       .then(response => {
         setActors(response.cast);
         setStatus('resolved');
@@ -23,7 +24,7 @@ const CastPage = ({ movieId }) => {
       .finally(() => {
         stopLoader();
       });
-  }, [movieId]);
+  }, [id]);
 
   return (
     <div>
@@ -40,7 +41,3 @@ const CastPage = ({ movieId }) => {
 };
 
 export default CastPage;
-
-CastPage.propTypes = {
-  movieId: PropTypes.string,
-};
